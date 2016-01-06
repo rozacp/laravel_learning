@@ -1,11 +1,10 @@
 @extends('app')
 
-@include('errors.error')
 @section('content')
 
     <h1>Write a new article</h1>
 
-    <form action="{{ action('ArticlesController@store') }}" method="post">
+    <form action="{{ route('articles.store') }}" method="post">
 
         {!! csrf_field() !!}
 
@@ -25,8 +24,9 @@
         </div>
 
         <div>
-            <input type="submit" value="Add task">
+            <input type="submit" value="Add article">
         </div>
     </form>
 
+    @include('errors.error')
 @stop
