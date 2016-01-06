@@ -12,7 +12,7 @@
                 <a href="{{ route('articles.show', [$article->id]) }}">{{ $article->title }}</a>
             </h2>
             <div class="body">{{ $article->body }}</div>
-            <p>Published at: {{ \Carbon\Carbon::parse($article->published_at)->format('d M Y') }}</p>
+            <p>Published at: {{ $article->published_at }}</p>
         </article>
         <hr>
     @endforeach

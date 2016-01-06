@@ -4,7 +4,7 @@
     <article>
         <h1>{{ $article->title }}</h1>
         <div class="body">{{ $article->body }}</div>
-        <p>Published at: {{ \Carbon\Carbon::parse($article->published_at)->format('d M Y') }}</p>
+        <p>Published at: {{ $article->published_at }}</p>
         <hr>
         <a href="{{ route('articles.edit', [$article->id]) }}">Edit the article</a>
 
