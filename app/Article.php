@@ -17,23 +17,23 @@ class Article extends Model {
 
     public function scopePublished($query)
     {
-        $query->where('published_at', '>=', Carbon::now());
+        $query->where('published_at', '<=', Carbon::now());
     }
 
-    public function setPublishedAtAttribute($date)
-    {
-        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
-    }
+//    public function setPublishedAtAttribute($date)
+//    {
+//        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
+//    }
 
     /**
      * ne dela najbolj, forma ne jebe 5% in vrne default getPublishedAtAttribute
      * @param $date
      * @return string
      */
-    public function formPublishedAtAttribute($date)
-    {
-        return Carbon::parse($date)->format('Y-m-d');
-    }
+//    public function formPublishedAtAttribute($date)
+//    {
+//        return Carbon::parse($date)->format('Y-m-d');
+//    }
 
     /**
      * format('d M Y')
@@ -42,7 +42,7 @@ class Article extends Model {
      */
     public function getPublishedAtAttribute($date)
     {
-        return Carbon::parse($date)->format('Y-m-d');
+        return Carbon::parse($date)->format('d M Y');
     }
 
 }
