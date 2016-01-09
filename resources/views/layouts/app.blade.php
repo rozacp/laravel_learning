@@ -23,6 +23,11 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .flash {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: green;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -75,6 +80,9 @@
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @if (session()->has('flash_info'))
+                    <div class="flash">{{ session('flash_info') }}</div>
+                @endif
                 <div class="panel panel-default">
                     @yield('content')
                 </div>

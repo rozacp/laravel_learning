@@ -23,10 +23,8 @@ class ArticlesController extends Controller {
         return view('articles.index', compact('articles'));
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.show', compact('article'));
     }
 
@@ -37,32 +35,26 @@ class ArticlesController extends Controller {
 
     public function store(ArticleRequest $request)
     {
-        $article = new Article($request->all());
+        Auth::user()->articles()->create($request->all());
 
-        Auth::user()->articles()->save($article);
-//        Article::create($request->all());
-
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with(['flash_info' => 'Article created successfully']);
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.edit', compact('article'));
     }
 
-    public function update(ArticleRequest $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
-        $article = Article::findOrFail($id);
         $article->update($request->all());
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with(['flash_info' => 'Article edited successfully']);
     }
 
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        Article::findOrFail($id)->delete();
+        $article->delete();
 
         return redirect()->route('articles.index');
     }
