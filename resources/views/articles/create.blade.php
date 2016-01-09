@@ -1,14 +1,15 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
+    <div class="panel-heading">Write a new article</div>
+    <div class="panel-body">
 
-    <h1>Write a new article</h1>
+        {!! Form::open(['route' => 'articles.store', 'method' => 'post']) !!}
 
-    {!! Form::open(['route' => 'articles.store', 'method' => 'post']) !!}
+        @include('articles.form', ['button' => 'Add article', 'date' => \Carbon\Carbon::now()])
 
-    @include('articles.form', ['button' => 'Add article', 'date' => \Carbon\Carbon::now()])
+        {!! Form::close() !!}
 
-    {!! Form::close() !!}
-
-    @include('errors.list')
+        @include('errors.list')
+    </div>
 @stop

@@ -1,11 +1,12 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
 
-    <h1>Some pplz if any</h1>
+    <div class="panel-heading">Contact</div>
+    <div class="panel-body">
 
         @if (count($people))
-        <h3>Da list:</h3>
+        <h2>Da list:</h2>
 
         <ul>
             @foreach ($people as $person)
@@ -13,9 +14,18 @@
             @endforeach
         </ul>
         @endif
+    </div>
 @stop
 
 @section('footer')
-    <hr>
-    <p>Some footer crap</p>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Footer</div>
+                <div class="panel-body">
+                    <p>Some footer crap</p>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop

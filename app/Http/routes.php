@@ -25,4 +25,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('articles', 'ArticlesController');
 
+    Route::auth();
+
 });

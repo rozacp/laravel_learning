@@ -1,17 +1,18 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
+    <div class="panel-heading">Edit: {{ $article->title }}</div>
+    <div class="panel-body">
 
-    <h1>Edit an existing article: {{ $article->title }}</h1>
+        {!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'patch']) !!}
 
-    {!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'patch']) !!}
+        @include('articles.form', [
+            'button' => 'Edit article',
+            'date' => \Carbon\Carbon::parse($article->getOriginal('published_at'))->format('Y-m-d')
+            ])
 
-    @include('articles.form', [
-        'button' => 'Edit article',
-        'date' => \Carbon\Carbon::parse($article->getOriginal('published_at'))->format('Y-m-d')
-        ])
+        {!! Form::close() !!}
 
-    {!! Form::close() !!}
-
-    @include('errors.list')
+        @include('errors.list')
+    </div>
 @stop

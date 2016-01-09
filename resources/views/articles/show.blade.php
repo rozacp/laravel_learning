@@ -1,17 +1,18 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
-    <article>
-        <h1>{{ $article->title }}</h1>
-        <div class="body">{{ $article->body }}</div>
-        <p>Published at: {{ $article->published_at }}</p>
-        <hr>
-        <a href="{{ route('articles.edit', [$article->id]) }}">Edit the article</a>
+    <div class="panel-heading">Articles</div>
+    <div class="panel-body">
+        <article>
+            <a href="{{ route('articles.edit', [$article->id]) }}">Edit the article</a>
+            <hr>
+            <h2>{{ $article->title }}</h2>
+            <div class="body">{{ $article->body }}</div>
+            <p>Published at: {{ $article->published_at }}</p>
 
-        <form action="{{ route('articles.destroy', [$article->id]) }}" method="post">
-            {{ csrf_field() }}
-            {{ method_field('delete') }}
-            <input type="submit" value="Delete article">
-        </form>
-    </article>
+            {!! Form::open(['route' => ['articles.destroy', $article->id], 'method' => 'delete']) !!}
+            {!! Form::submit('Delete article') !!}
+            {!! Form::close() !!}
+        </article>
+    </div>
 @stop
