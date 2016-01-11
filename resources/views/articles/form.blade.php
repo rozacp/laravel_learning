@@ -14,5 +14,10 @@
 </div>
 
 <div>
+    {!! Form::label('tags', 'Tags:') !!}
+    {!! Form::select('tags[]', $tags, $selected, ['multiple']) !!}
+</div>
+
+<div>
     {!! Form::submit($button) !!}
 </div>

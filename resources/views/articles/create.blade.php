@@ -6,7 +6,12 @@
 
         {!! Form::open(['route' => 'articles.store', 'method' => 'post']) !!}
 
-        @include('articles.form', ['button' => 'Add article', 'date' => \Carbon\Carbon::now()])
+        @include('articles.form', [
+            'tags' => $tags,
+            'selected' => null,
+            'button' => 'Add article',
+            'date' => \Carbon\Carbon::now()
+            ])
 
         {!! Form::close() !!}
 

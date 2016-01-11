@@ -6,6 +6,7 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\Controller;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller {
@@ -30,24 +31,31 @@ class ArticlesController extends Controller {
 
     public function create()
     {
-        return view('articles.create');
+        $tags = $this->tagsList();
+
+        return view('articles.create', compact('tags'));
     }
 
     public function store(ArticleRequest $request)
     {
-        Auth::user()->articles()->create($request->all());
+        $article = Auth::user()->articles()->create($request->all());
+        $article->tags()->attach($this->tagsInput($request));
 
         return redirect()->route('articles.index')->with(['flash_info' => 'Article created successfully']);
     }
 
     public function edit(Article $article)
     {
-        return view('articles.edit', compact('article'));
+        $tags = $this->tagsList();
+        $selected = $article->tags()->lists('id')->all();
+
+        return view('articles.edit', compact('article', 'tags', 'selected'));
     }
 
     public function update(ArticleRequest $request, Article $article)
     {
         $article->update($request->all());
+        $article->tags()->sync($this->tagsInput($request));
 
         return redirect()->route('articles.index')->with(['flash_info' => 'Article edited successfully']);
     }
@@ -56,6 +64,27 @@ class ArticlesController extends Controller {
     {
         $article->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with(['flash_info' => 'Article deleted']);
+    }
+
+    /**
+     * Tag list to pupulate form
+     * @return mixed
+     */
+    private function tagsList()
+    {
+        $tags = Tag::lists('name', 'id');
+
+        return $tags;
+    }
+
+    /**
+     * Tag id's from input form
+     * @param ArticleRequest $request
+     * @return array|string
+     */
+    private function tagsInput(ArticleRequest $request)
+    {
+        return $request->input('tags');
     }
 }

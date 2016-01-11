@@ -20,6 +20,11 @@ class Article extends Model {
         return $this->belongsTo(User::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', Carbon::now());
@@ -30,10 +35,10 @@ class Article extends Model {
 //        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date);
 //    }
 
-//    public function formPublishedAtAttribute($date)
-//    {
-//        return Carbon::parse($date)->format('Y-m-d');
-//    }
+    public function getPublishedAtFormAttribute($date)
+    {
+        return Carbon::parse($date)->format('Y-m-d');
+    }
 
     public function getPublishedAtAttribute($date)
     {

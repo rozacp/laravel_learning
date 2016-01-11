@@ -7,8 +7,10 @@
         {!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'patch']) !!}
 
         @include('articles.form', [
+            'tags' => $tags,
+            'selected' => $selected,
             'button' => 'Edit article',
-            'date' => \Carbon\Carbon::parse($article->getOriginal('published_at'))->format('Y-m-d')
+            'date' => $article->published_at_form
             ])
 
         {!! Form::close() !!}
