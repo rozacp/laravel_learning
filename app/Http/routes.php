@@ -13,9 +13,11 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-	Route::get('/', 'PagesController@home');
-	Route::get('about', 'PagesController@about');
-	Route::get('contact', 'PagesController@contact');
+    Route::get('/', 'PagesController@home')->name('pages.home');
+    Route::get('about', 'PagesController@about')->name('pages.about');
+    Route::get('contact', 'PagesController@contact')->name('pages.contact');
+
+    Route::get('tags/{tag}', 'TagsController@show')->name('tags');
 
 //	Route::get('articles', 'ArticlesController@index');
 //	Route::get('articles/{id}', 'ArticlesController@show')->where('id', '^[0-9]*$');

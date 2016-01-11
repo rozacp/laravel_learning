@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -27,6 +28,10 @@
             margin-bottom: 20px;
             font-weight: bold;
             color: green;
+        }
+
+        select {
+            width: 100%;
         }
     </style>
 </head>
@@ -44,15 +49,17 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
+                <a class="navbar-brand" href="{{ route('pages.home') }}">Home</a>
             </div>
 
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/about') }}">About</a></li>
-                    <li><a href="{{ url('/contact') }}">Contact</a></li>
-                    <li><a href="{{ url('/articles') }}">Articles</a></li>
+                    <li><a href="{{ route('pages.about') }}">About</a></li>
+                    <li><a href="{{ route('pages.contact') }}">Contact</a></li>
+                    <li><a href="{{ route('articles.index') }}">Articles</a></li>
+                    <li><a href="{{ route('articles.show', ['id' => $latest->id]) }}"><b>{{ $latest->title }}</b></a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -88,12 +95,12 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
         @yield('footer')
     </div>
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>

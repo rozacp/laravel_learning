@@ -6,7 +6,7 @@
 
         {!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'patch']) !!}
 
-        @include('articles.form', [
+        @include('articles._form', [
             'tags' => $tags,
             'selected' => $selected,
             'button' => 'Edit article',
@@ -17,4 +17,11 @@
 
         @include('errors.list')
     </div>
+@stop
+
+@section('footer')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    <script>
+        $('select').select2();
+    </script>
 @stop

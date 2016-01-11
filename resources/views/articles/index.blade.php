@@ -13,8 +13,7 @@
                     <a href="{{ route('articles.show', [$article->id]) }}">{{ $article->title }}</a>
                 </h2>
                 <div class="body">{{ $article->body }}</div>
-                <p><b>Published at:</b> {{ $article->published_at }}</p>
-                @if (! $article->tags->isEmpty())<p><b>Tags:</b>&nbsp;@foreach($article->tags as $tag) {{ $tag->name }}&nbsp; @endforeach @endif</p>
+                @include('articles._details')
             </article>
         @endforeach
     </div>
