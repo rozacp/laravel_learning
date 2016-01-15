@@ -14,12 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share('latest', Article::published()->latest()->first());
+        // ne deli tega ker zajebejo migracije
+        //$latest = Article::published()->latest()->first();
+        //
+        //view()->share('latest', $latest);
 
-//        view()->composer('layouts.app', function($view)
-//        {
-//            $view->with('latest', Article::latest()->first());
-//        });
+        view()->composer('layouts.app', function ($view) {
+            $view->with('latest', Article::published()->latest()->first());
+        });
     }
 
     /**
