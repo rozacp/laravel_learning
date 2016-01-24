@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.app', function ($view) {
             $view->with('latest', Article::published()->latest()->first());
         });
+
     }
 
     /**

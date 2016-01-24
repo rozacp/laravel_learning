@@ -19,7 +19,7 @@ class ArticlesController extends Controller {
 
     public function index()
     {
-        Auth::loginUsingId(1); // DEJ TO STRAN
+        //Auth::loginUsingId(1); // DEJ TO STRAN
 
         $articles = Article::latest('updated_at')->published()->get();
 

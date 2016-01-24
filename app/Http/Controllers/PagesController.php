@@ -1,9 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Harvester\Harvester;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 
 class PagesController extends Controller {
 
@@ -27,4 +29,18 @@ class PagesController extends Controller {
 
         return view('pages.contact')->with('people', $people);
     }
+
+
+
+    public function test()
+    {
+        //$harvester = App::make(Harvester::class, ['mona', 'budala', 'kreten']);
+        //$harvester = App::make('harvester', ['mona', 'budala', 'kreten']);
+        $harvester = App('harvester', ['mona', 'budala', 'kreten']);
+        // return \Harvester::fullChar();
+
+        return $harvester->fullChar();
+    }
+
+
 }

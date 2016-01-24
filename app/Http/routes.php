@@ -13,6 +13,7 @@
 
 Route::group(['middleware' => ['web']], function () {
 
+    Route::get('test', 'PagesController@test');
     Route::get('/', 'PagesController@home')->name('pages.home');
     Route::get('about', 'PagesController@about')->name('pages.about')->middleware([ 'auth', 'admin' ]);
     Route::get('contact', 'PagesController@contact')->name('pages.contact');
