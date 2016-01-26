@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Article;
 use Illuminate\Support\ServiceProvider;
+use App\Harvester\Harvester;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('harvester', Harvester::class);
     }
 }

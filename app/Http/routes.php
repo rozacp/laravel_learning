@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['web']], function() {
 
     Route::get('test', 'PagesController@test');
     Route::get('/', 'PagesController@home')->name('pages.home');
@@ -23,4 +23,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('articles', 'ArticlesController');
 
     Route::auth();
+});
+
+Route::group(['middleware' => ['api']], function() {
+
+    Route::post('api', 'ApiController@index');
+    Route::get('api', 'ApiController@token');
 });

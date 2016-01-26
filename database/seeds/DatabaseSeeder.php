@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
 
         factory(App\Tag::class, 7)->create();
 
+        factory(\App\UserApi::class)->create();
+
         factory(App\User::class, 5)->create()->each(function ($user) {
 
             $n = 5;

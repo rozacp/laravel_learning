@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Harvester\Harvester;
+use App\UserApi;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -34,12 +35,13 @@ class PagesController extends Controller {
 
     public function test()
     {
-        //$harvester = App::make(Harvester::class, ['mona', 'budala', 'kreten']);
-        //$harvester = App::make('harvester', ['mona', 'budala', 'kreten']);
+//        $harvester = App::make(Harvester::class, ['mona', 'budala', 'kreten']);
+//        $harvester = App::make('harvester', ['mona', 'budala', 'kreten']);
         $harvester = App('harvester', ['mona', 'budala', 'kreten']);
-        // return \Harvester::fullChar();
+//        return \Harvester::fullChar();
 
         return $harvester->fullChar();
+//        return UserApi::all();
     }
 
 
